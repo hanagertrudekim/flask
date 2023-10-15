@@ -157,7 +157,8 @@ def analyze_dcm_series(dcm_paths, subj):
     series_metadata_dict = {}
     series_path_dict = {}
     for dcm_path in tqdm(dcm_paths, desc=" Analyzing series", position=1, leave=False):
-        dcm = dcmread(dcm_path)
+        ## default force = False
+        dcm = dcmread(dcm_path,force=True) 
         try:
             series_uid = dcm.SeriesInstanceUID
         except:
