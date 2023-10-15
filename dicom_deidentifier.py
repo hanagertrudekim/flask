@@ -131,10 +131,10 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
 
     print("deid_dcm_dir_path : ", deid_dcm_dir_path, "deid_dcm_dir_child_path", deid_dcm_dir_child_path)
     if not os.path.exists(deid_dcm_dir_path):
-        os.makedirs(deid_dcm_dir_path, exist_ok=True)
+        os.mkdir(deid_dcm_dir_path)
 
     if not os.path.exists(deid_dcm_dir_child_path):
-        os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
+        os.mkdir(deid_dcm_dir_child_path)
 
     return deid_dcm_dir_child_path
 
@@ -223,7 +223,7 @@ def run_deidentifier(src_path: Path):
     if dst_path:
         deid_dcm_dir = Path(dst_path)
         if not os.path.exists(deid_dcm_dir):
-            os.makedirs(deid_dcm_dir, exist_ok=True)
+            os.mkdir(deid_dcm_dir)
     else:
         deid_dcm_dir = prepare_deid_dcm_dir(src_path, subj)
 
@@ -261,7 +261,7 @@ def deidentify(dcm_path: Path, deid_dcm_dir: Path, subj: str):
     deid_series_dir_path = os.path.join(deid_dcm_dir, deid_series_dir)
 
     if not os.path.exists(deid_series_dir_path):
-        os.makedirs(deid_series_dir_path, exist_ok=True)
+        os.mkdir(deid_series_dir_path)
 
     # Overwrite PatientID, PatientName, Patient BirthDate
     dcm.PatientID = subj
@@ -295,7 +295,6 @@ def main(src_path):
 
     # 작업이 실패하면 종료 코드 'error'을 반환
     return "error"
-
 
 # # 스크립트 직접 실행
 # if __name__ == "__main__":
