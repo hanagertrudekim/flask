@@ -223,7 +223,7 @@ def run_deidentifier(src_path: Path):
     if dst_path:
         deid_dcm_dir = Path(dst_path)
         if not os.path.exists(deid_dcm_dir):
-            os.mkdir(deid_dcm_dir)
+            os.makedirs(deid_dcm_dir, exist_ok=True)
     else:
         deid_dcm_dir = prepare_deid_dcm_dir(src_path, subj)
 
@@ -261,7 +261,7 @@ def deidentify(dcm_path: Path, deid_dcm_dir: Path, subj: str):
     deid_series_dir_path = os.path.join(deid_dcm_dir, deid_series_dir)
 
     if not os.path.exists(deid_series_dir_path):
-        os.mkdir(deid_series_dir_path)
+        os.makedirs(deid_series_dir_path, exist_ok=True)
 
     # Overwrite PatientID, PatientName, Patient BirthDate
     dcm.PatientID = subj
