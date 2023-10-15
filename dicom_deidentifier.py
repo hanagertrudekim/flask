@@ -4,7 +4,6 @@ Python script to de-identify DICOM images
 import os
 import re
 from os.path import dirname, basename
-import argparse
 import csv
 from typing import List, Dict
 from pathlib import Path
@@ -16,20 +15,7 @@ import sys
 import uuid
 
 # Setup Parser
-parser = argparse.ArgumentParser(description="De-Identifier")
-parser.add_argument("src", metavar="src", type=str,
-                    help="DICOM source folder path")
-parser.add_argument(
-    "-f", "--file", action="store", type=Path, help="CSV file including ID mapping"
-)
-parser.add_argument("-d", "--dst", action="store",
-                    type=str, help="Deid folder path")
-args = parser.parse_args()
 
-# Declare input parameters
-src_path = args.src
-if src_path.endswith("/"):
-    src_path = src_path[:-1]
 dst_path = None
 csv_path = None
 
@@ -297,6 +283,8 @@ def deidentify(dcm_path: Path, deid_dcm_dir: Path, subj: str):
 
 # main 함수로 실행
 def main(src_path):
+    if src_path.endswith("/"):
+            src_path = src_path[:-1]
     if run_batch_or_not(src_path):
         run_deidentifier_batch(src_path)
         return "success"
