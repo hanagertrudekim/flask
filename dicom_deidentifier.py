@@ -126,16 +126,15 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     deid_dcm_dir_material.insert(-1, "deid")
     deid_dcm_dir = ("_").join(deid_dcm_dir_material)
     deid_dcm_dir_path = os.path.join(dirname(dcm_dir_root), deid_dcm_dir)
-    deid_dcm_child_dir = ("_").join(
-        [subj, basename(src_dcm_dir).split("_")[1]])
-    deid_dcm_dir_child_path = os.path.join(
-        deid_dcm_dir_path, deid_dcm_child_dir)
+    deid_dcm_child_dir = ("_").join([subj, basename(src_dcm_dir).split("_")[1]])
+    deid_dcm_dir_child_path = os.path.join(deid_dcm_dir_path, deid_dcm_child_dir)
 
+    print("deid_dcm_dir_path : ", deid_dcm_dir_path, "deid_dcm_dir_child_path", deid_dcm_dir_child_path)
     if not os.path.exists(deid_dcm_dir_path):
-        os.mkdir(deid_dcm_dir_path)
+        os.makedirs(deid_dcm_dir_path)
 
     if not os.path.exists(deid_dcm_dir_child_path):
-        os.mkdir(deid_dcm_dir_child_path)
+        os.makedirs(deid_dcm_dir_child_path)
 
     return deid_dcm_dir_child_path
 
