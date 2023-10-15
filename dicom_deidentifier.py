@@ -131,10 +131,10 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
 
     print("deid_dcm_dir_path : ", deid_dcm_dir_path, "deid_dcm_dir_child_path", deid_dcm_dir_child_path)
     if not os.path.exists(deid_dcm_dir_path):
-        os.makedirs(deid_dcm_dir_path)
+        os.makedirs(deid_dcm_dir_path, exist_ok=True)
 
     if not os.path.exists(deid_dcm_dir_child_path):
-        os.makedirs(deid_dcm_dir_child_path)
+        os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
 
     return deid_dcm_dir_child_path
 
