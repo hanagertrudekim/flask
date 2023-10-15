@@ -297,15 +297,15 @@ def main(src_path):
     return "error"
 
 
-# 스크립트 직접 실행
-if __name__ == "__main__":
-    if run_batch_or_not(src_path):
-        run_deidentifier_batch(src_path)
-        sys.exit('success')
-    else:
-        run_deidentifier(src_path)
-        # 작업이 성공하면 종료 코드 'success'을 반환
-        sys.exit('success')
+# # 스크립트 직접 실행
+# if __name__ == "__main__":
+#     if run_batch_or_not(src_path):
+#         run_deidentifier_batch(src_path)
+#         sys.exit('success')
+#     else:
+#         run_deidentifier(src_path)
+#         # 작업이 성공하면 종료 코드 'success'을 반환
+#         sys.exit('success')
 
-    # 작업이 실패하면 종료 코드 'error'을 반환
-    sys.exit('error')
+#     # 작업이 실패하면 종료 코드 'error'을 반환
+#     sys.exit('error')
