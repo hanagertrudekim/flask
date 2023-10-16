@@ -121,19 +121,31 @@ def get_dcm_paths_from_dcm_dir(src_dcm_dir: str) -> List[Path]:
 
 # 입력값인 src_dcm_dir와 subj를 사용하여 De-identification 작업을 위한 디렉터리 구조를 생성하고, 생성된 디렉터리의 경로를 반환
 def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
+        
     dcm_dir_root = dirname(src_dcm_dir)
+    # print("src_dcm_dir: ", src_dcm_dir) /Users/hana/Desktop/Beta/KU39009_20220921/DCM_SARP4_80871040_deid_IN0
+    # print("dcm_dir_root: ", dcm_dir_root) /Users/hana/Desktop/Beta/KU39009_20220921
+
     deid_dcm_dir_material = basename(dcm_dir_root).split("_")
-    deid_dcm_dir_material.insert(-1, "deid")
-    deid_dcm_dir = ("_").join(deid_dcm_dir_material)
+    deid_dcm_dir_material.insert(1, "deid")
+    deid_dcm_dir = ("_").join(deid_dcm_dir_material) ## KU200_deid_343
+    
     deid_dcm_dir_path = os.path.join(dirname(dcm_dir_root), deid_dcm_dir)
+    # print("deid_dcm_dir_path: ", deid_dcm_dir_path) /Users/hana/Desktop/Beta/KU39009_deid_20220921
+
     deid_dcm_child_dir = ("_").join([subj, basename(src_dcm_dir).split("_")[1]])
+
     deid_dcm_dir_child_path = os.path.join(deid_dcm_dir_path, deid_dcm_child_dir)
+    # print("deid_dcm_dir_child_path: ", deid_dcm_dir_child_path) /Users/hana/Desktop/Beta/KU39009_deid_20220921/cfaaaaf2-dcbe-4978-98a9-3f355d2a9628_SARP4
 
     if not os.path.exists(deid_dcm_dir_path):
-        os.mkdir(deid_dcm_dir_path)
+        os.chmod(dirname(deid_dcm_dir_path),0o777)
+        os.makedirs(deid_dcm_dir_path, exist_ok=True)
 
     if not os.path.exists(deid_dcm_dir_child_path):
-        os.mkdir(deid_dcm_dir_child_path)
+        os.chmod(dirname(deid_dcm_dir_child_path),0o777)
+        os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
+        
 
     return deid_dcm_dir_child_path
 
@@ -260,7 +272,7 @@ def deidentify(dcm_path: Path, deid_dcm_dir: Path, subj: str):
     deid_series_dir_path = os.path.join(deid_dcm_dir, deid_series_dir)
 
     if not os.path.exists(deid_series_dir_path):
-        os.mkdir(deid_series_dir_pathe)
+        os.mkdir(deid_series_dir_path)
 
     # Overwrite PatientID, PatientName, Patient BirthDate
     dcm.PatientID = subj
