@@ -128,7 +128,8 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
 
     dcm_dir_array = dirname(dcm_dir_root).split(os.path.sep)
     new_dcm_dir_root = os.path.sep.join(dcm_dir_array)
-    # print("new_dcm_dir_root : ", new_dcm_dir_root)
+    #print("new_dcm_dir_root : ", new_dcm_dir_root)
+    os.system(f'chmod -R g+x {new_dcm_dir_root}')
 
     deid_dcm_dir_material = basename(dcm_dir_root).split("_")
     deid_dcm_dir_material.insert(1, "deid")
@@ -138,21 +139,19 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     # print("deid_dcm_dir_path: ", deid_dcm_dir_path) /Users/hana/Desktop/Beta/KU39009_deid_20220921
 
     deid_dcm_child_dir = ("_").join([subj, basename(src_dcm_dir).split("_")[1]])
-
     deid_dcm_dir_child_path = os.path.join(deid_dcm_dir_path, deid_dcm_child_dir)
-
     # print("deid_dcm_dir_child_path: ", deid_dcm_dir_child_path) /Users/hana/Desktop/Beta/KU39009_deid_20220921/cfaaaaf2-dcbe-4978-98a9-3f355d2a9628_SARP4
-
+    
     if not os.path.exists(deid_dcm_dir_path):
         # print(dirname(deid_dcm_dir_path))
-        os.chmod(dirname(deid_dcm_dir_path),0o777)
         os.makedirs(deid_dcm_dir_path, exist_ok=True)
+        ## todo : 권한 제거 코드 추가
 
+    
     if not os.path.exists(deid_dcm_dir_child_path):
         # print(dirname(deid_dcm_dir_child_path))
-        os.chmod(dirname(deid_dcm_dir_child_path),0o777)
         os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
-        
+
 
     return deid_dcm_dir_child_path
 
