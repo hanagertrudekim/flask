@@ -232,6 +232,7 @@ def parse_series_description(series_description: str) -> str:
 
 # dicom파일 deidentifier을 수행하는 함수
 def run_deidentifier(src_path: Path):
+    print('src_path : ', src_path)
     mrn_id_mapping = get_subj_from_csv(csv_path) if csv_path else {}
 
     subj = str(uuid.uuid4())
@@ -260,7 +261,8 @@ def run_deidentifier(src_path: Path):
 def run_deidentifier_batch(src_path):
     src_dcm_dirs = os.listdir(src_path)
     for src_dcm_dir in tqdm(src_dcm_dirs, desc=" Scans", position=0):
-        run_deidentifier(os.path.join(src_path, src_dcm_dir))
+        if src_dcm_dir.startswith('DCM'):
+            run_deidentifier(os.path.join(src_path, src_dcm_dir))
 
 
 # De-identification하는 함수
@@ -302,6 +304,7 @@ def main(src_path):
     if src_path.endswith("/"):
             src_path = src_path[:-1]
     if run_batch_or_not(src_path):
+        print('run batch')
         run_deidentifier_batch(src_path)
         return "success"
     else:
