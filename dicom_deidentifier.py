@@ -144,13 +144,13 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     
     if not os.path.exists(deid_dcm_dir_path):
         # print(dirname(deid_dcm_dir_path))
-        os.makedirs(deid_dcm_dir_path, exist_ok=True)
+        os.mkdir(deid_dcm_dir_path)
         ## todo : 권한 제거 코드 추가
 
     
     if not os.path.exists(deid_dcm_dir_child_path):
         # print(dirname(deid_dcm_dir_child_path))
-        os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
+        os.mkdir(deid_dcm_dir_child_path)
 
 
     return deid_dcm_dir_child_path
