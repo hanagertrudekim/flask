@@ -143,14 +143,14 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
 
 
     print("dirname(deid_dcm_dir_path) 유무 : ",os.path.exists(dirname(deid_dcm_dir_path)))
-    if os.path.exists(dirname(deid_dcm_dir_path)):
-        os.mkdir(deid_dcm_dir_path, 0o777)
+    if not os.path.exists(deid_dcm_dir_path):
+        os.makedirs(deid_dcm_dir_path, exist_ok=True)
         #os.system(f'chmod 777 {deid_dcm_dir_path}')
         ## todo : 권한 제거 코드 추가
 
     
-    if os.path.exists(dirname(deid_dcm_dir_child_path)):
-        os.mkdir(deid_dcm_dir_child_path, 0o777)
+    if not os.path.exists(deid_dcm_dir_child_path):
+        os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
         # os.system(f'chmod 777 {deid_dcm_dir_child_path}')
 
 
@@ -242,7 +242,7 @@ def run_deidentifier(src_path: Path):
     if dst_path:
         deid_dcm_dir = Path(dst_path)
         if not os.path.exists(deid_dcm_dir):
-            os.mkdir(deid_dcm_dir, 0o777)
+            os.makedirs(deid_dcm_dir, exist_ok=True)
     else:
         deid_dcm_dir = prepare_deid_dcm_dir(src_path, subj)
 
@@ -281,7 +281,7 @@ def deidentify(dcm_path: Path, deid_dcm_dir: Path, subj: str):
     deid_series_dir_path = os.path.join(deid_dcm_dir, deid_series_dir)
 
     if not os.path.exists(deid_series_dir_path):
-        os.mkdir(deid_series_dir_path, 0o777)
+        os.makedirs(deid_series_dir_path, exist_ok=True)
 
     # Overwrite PatientID, PatientName, Patient BirthDate
     dcm.PatientID = subj
