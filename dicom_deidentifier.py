@@ -141,6 +141,8 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     deid_dcm_dir_child_path = os.path.join(deid_dcm_dir_path, deid_dcm_child_dir)
     print("deid_dcm_dir_child_path: ", deid_dcm_dir_child_path)
 
+
+    print("dirname(deid_dcm_dir_path) 유무 : ",os.path.exists(dirname(deid_dcm_dir_path)))
     if os.path.exists(dirname(deid_dcm_dir_path)):
         os.mkdir(deid_dcm_dir_path, 0o777)
         #os.system(f'chmod 777 {deid_dcm_dir_path}')
