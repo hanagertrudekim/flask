@@ -129,7 +129,6 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     dcm_dir_array = dirname(dcm_dir_root).split(os.path.sep)
     new_dcm_dir_root = os.path.sep.join(dcm_dir_array)
     print("new_dcm_dir_root : ", new_dcm_dir_root)
-    os.system(f'chmod 777 *')
 
     deid_dcm_dir_material = basename(dcm_dir_root).split("_")
     deid_dcm_dir_material.insert(1, "deid")
