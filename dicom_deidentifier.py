@@ -143,13 +143,13 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     # print("deid_dcm_dir_child_path: ", deid_dcm_dir_child_path) /Users/hana/Desktop/Beta/KU39009_deid_20220921/cfaaaaf2-dcbe-4978-98a9-3f355d2a9628_SARP4
     
     if not os.path.exists(deid_dcm_dir_path):
-        # print(dirname(deid_dcm_dir_path))
+        os.system(f'chmod 777 {deid_dcm_dir_path}')
         os.mkdir(deid_dcm_dir_path)
         ## todo : 권한 제거 코드 추가
 
     
     if not os.path.exists(deid_dcm_dir_child_path):
-        # print(dirname(deid_dcm_dir_child_path))
+        os.system(f'chmod 777 {deid_dcm_dir_child_path}')
         os.mkdir(deid_dcm_dir_child_path)
 
 
