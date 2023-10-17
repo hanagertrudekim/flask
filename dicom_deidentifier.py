@@ -122,7 +122,7 @@ def get_dcm_paths_from_dcm_dir(src_dcm_dir: str) -> List[Path]:
 # 입력값인 src_dcm_dir와 subj를 사용하여 De-identification 작업을 위한 디렉터리 구조를 생성하고, 생성된 디렉터리의 경로를 반환
 def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
         
-    dcm_dir_root = dirname(src_dcm_dir)
+    dcm_dir_root = src_dcm_dir
     print("src_dcm_dir: ", src_dcm_dir)
     print("dcm_dir_root: ", dcm_dir_root) 
 
@@ -308,6 +308,7 @@ def main(src_path):
         run_deidentifier_batch(src_path)
         return "success"
     else:
+        print('run deidentifier')
         run_deidentifier(src_path)
         # 작업이 성공하면 종료 코드 'success'을 반환
         return "success"
