@@ -134,7 +134,7 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     deid_dcm_dir_material.insert(1, "deid")
     deid_dcm_dir = ("_").join(deid_dcm_dir_material) ## KU200_deid_343
     
-    deid_dcm_dir_path = os.path.join(new_dcm_dir_root, deid_dcm_dir)
+    deid_dcm_dir_path = os.path.abspath(os.path.join(new_dcm_dir_root, deid_dcm_dir))
     print("deid_dcm_dir_path: ", deid_dcm_dir_path)
 
     deid_dcm_child_dir = ("_").join([subj, basename(src_dcm_dir).split("_")[1]])
