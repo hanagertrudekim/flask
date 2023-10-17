@@ -127,7 +127,9 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     print("dcm_dir_root: ", dcm_dir_root) 
 
     dcm_dir_array = dirname(dcm_dir_root).split(os.path.sep)
+    home_dir = os.path.expanduser("~")
     new_dcm_dir_root = os.path.sep.join(dcm_dir_array)
+    new_dcm_dir_root = os.path.join(home_dir, new_dcm_dir_root)
     print("new_dcm_dir_root : ", new_dcm_dir_root)
 
     deid_dcm_dir_material = basename(dcm_dir_root).split("_")
