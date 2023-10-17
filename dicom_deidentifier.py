@@ -126,7 +126,7 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     # print("src_dcm_dir: ", src_dcm_dir) /Users/hana/Desktop/Beta/KU39009_20220921/DCM_SARP4_80871040_deid_IN0
     # print("dcm_dir_root: ", dcm_dir_root) /Users/hana/Desktop/Beta/KU39009_20220921
 
-    dcm_dir_array = dirname(dcm_dir_root).split(os.path.sep)
+    dcm_dir_array = dcm_dir_root.split(os.path.sep)
     new_dcm_dir_root = os.path.sep.join(dcm_dir_array)
     #print("new_dcm_dir_root : ", new_dcm_dir_root)
     #os.system(f'chmod 777 *')
