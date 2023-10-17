@@ -145,12 +145,13 @@ def prepare_deid_dcm_dir(src_dcm_dir, subj) -> str:
     print("dirname(deid_dcm_dir_path) 유무 : ",os.path.exists(dirname(deid_dcm_dir_path)))
     if not os.path.exists(deid_dcm_dir_path):
         os.makedirs(deid_dcm_dir_path, exist_ok=True)
-        #os.system(f'chmod 777 {deid_dcm_dir_path}')
+        os.chmod(deid_dcm_dir_path, 0o777)
         ## todo : 권한 제거 코드 추가
 
     
     if not os.path.exists(deid_dcm_dir_child_path):
         os.makedirs(deid_dcm_dir_child_path, exist_ok=True)
+        os.chmod(deid_dcm_dir_child_path, 0o777)
         # os.system(f'chmod 777 {deid_dcm_dir_child_path}')
 
 
