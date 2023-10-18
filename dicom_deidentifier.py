@@ -82,7 +82,10 @@ def get_dir_depth(path, depth=0):
 
 # dicom이 적절한 디렉토리 위치에 있는지 검사하고 맞다면 true, 아니라면 error
 def run_batch_or_not(path, depth=0):
+    print('os.getcwd() : ', os.getcwd())
+    os.chdir(path)
     if not os.path.isdir(path):
+        print('not isdir')
         return False
 
     max_depth = depth
